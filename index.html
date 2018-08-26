@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unit 4 Game</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/reset.css">
+
+
+</head>
+<body>
+
+<div id="header">
+    <h1>CrystalsCollector!</h1>
+</div>
+
+<div id="box">
+    <p>-You will be given a random number at the start of the game.</p>
+    <p>-There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+    <p>-You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</p>
+    <p>-The value of each crystal is hidden from you until you click on it.</p>
+    <p>-Each time when the game starts, the game will change the values of each crystal.</p>
+</div>
+
+<div id="computerGuess"></div>
+
+<div id="winsLosses">
+    <p id="wins">Wins:</p>
+    <p id="losses">Losses:</p>
+</div>
+
+<div id="crystals">
+    <img id= "crys1" src="https://vignette.wikia.nocookie.net/marvel-contestofchampions/images/1/1c/2-Star_Crystal.png/revision/latest?cb=20150825213642" >
+    <img id= "crys2" src="https://mbch.guide/wp-content/uploads/crystal_daily.png" >
+    <img id= "crys3" src="https://vignette.wikia.nocookie.net/marvel-contestofchampions/images/d/d8/Crystal_cosmic.png/revision/latest?cb=20151121233932" >
+    <img id= "crys4" src="https://vignette.wikia.nocookie.net/marvel-contestofchampions/images/c/ce/Crystal_common.png/revision/latest?cb=20151121233809" >
+</div>
+
+<div id="yourScore">
+    <p>Your score is:</p>
+</div>
+
+<div id="totalScore"></div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $( document ).ready(function(){
+    var computerGuess=Math.floor(Math.random()*101+19)
+    
+    $('#computerGuess').text(computerGuess);
+   
+    var crys1= Math.floor(Math.random()*11+1)
+    var crys2= Math.floor(Math.random()*11+1)
+    var crys3= Math.floor(Math.random()*11+1)
+    var crys4= Math.floor(Math.random()*11+1)
+    var totalScore= 0; 
+    var wins= 0;
+    var losses = 0;
+    
+  $('#wins').text(wins);
+  $('#losses').text(losses);
+  function reset(){
+    var computerGuess=Math.floor(Math.random()*101+19);
+        console.log(computerGuess)
+        $('#computerGuess').text(computerGuess);
+        crys1= Math.floor(Math.random()*11+1);
+        crys2= Math.floor(Math.random()*11+1);
+        crys3= Math.floor(Math.random()*11+1);
+        crys4= Math.floor(Math.random()*11+1);
+        $('#totalScore').text(totalScore);
+        } 
+
+  function congrats(){
+  alert("You won!");
+    wins++; 
+    $('#wins').text(wins);
+    reset();
+  }
+
+  function sucks(){
+  alert ("You lose!");
+    losses++;
+    $('#losses').text(losses);
+    reset()
+  }
+ 
+    $('#crys1').on ('click', function(){
+        totalScore = totalScore + crys1;
+      console.log("New totalScore= " + totalScore);
+      $('#totalScore').text(totalScore); 
+          if (totalScore == computerGuess){
+            congrats();
+          }
+          else if ( totalScore > computerGuess){
+            sucks();
+          }   
+    })  
+    $('#crys2').on ('click', function(){
+        totalScore = totalScore + crys2;
+      console.log("New totalScore= " + totalScore);
+      $('#totalScore').text(totalScore); 
+          if (totalScore == computerGuess){
+            congrats();
+          }
+          else if ( totalScore > computerGuess){
+            sucks();
+          } 
+    })  
+    $('#crys3').on ('click', function(){
+      totalScore = totalScore + crys3;
+      console.log("New totalScore= " + totalScore);
+      $('#totalScore').text(totalScore);
+            if (totalScore == computerGuess){
+            congrats();
+          }
+          else if ( totalScore > computerGuess){
+            sucks();
+          } 
+    })  
+    $('#crys4').on ('click', function(){
+      totalScore = totalScore + crys4;
+      console.log("New totalScore= " + totalScore);
+      $('#totalScore').text(totalScore);        
+            if (totalScore == computerGuess){
+            congrats();
+          }
+          else if ( totalScore > computerGuess){
+            sucks();
+          }
+    });   
+  }); 
+</script>
+
+</body>
+</html>            
